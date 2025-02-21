@@ -18,17 +18,18 @@ async function obtenerReservas() {
             throw new Error("Error al obtener las reservas")
         }
         const reservas = await response.json();
-        console.log(reservas[0].horaReserva);
-
+        //Despues esto ira dentro de una funcion
     } catch (error) {
         console.error("Error:", error);
     }
 }
-function contruirInterfaz(){
-    let select = document.getElementById("horaReserva");
-    let opcion = document.createElement("option");
-    opcion.value = "14:00";
-    opcion.textContent = "14:00";
-    select.appendChild(opcion);
+function generarHorasDisponibles(inicio, cierre) {
+    const select = document.getElementById("select");
+    for (let i = inicio; i < cierre; i++) {
+       let hora = `${i}:00`;
+       let option = document.createElement("option");
+       option.textContent = hora;
+       select.appendChild(option);
+    } 
 }
-contruirInterfaz();
+generarHorasDisponibles(12,20);
